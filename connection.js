@@ -4,7 +4,7 @@ var connection = mysql2.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "api_test"
+    database: "test"
 })
 
 connection.connect((err) => {
