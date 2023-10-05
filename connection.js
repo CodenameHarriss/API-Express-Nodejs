@@ -1,10 +1,10 @@
 const mysql2 = require('mysql2');
 var connection = mysql2.createConnection({
-    port: 3306,
+    port: 4306,
     host: "localhost",
     user: "root",
     password: "",
-    database: "test"
+    database: "api_test"
 })
 
 connection.connect((err) => {
