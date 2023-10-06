@@ -3,7 +3,7 @@ const connection = require('../connection');
 const router = express.Router();
 
 
-router.post('/create', (req, res, next) => {
+router.post('/create', (req, res) => {
     let prd = req.body;
     query = "INSERT INTO product (prd_name,prd_price,prd_qty) VALUES (?,?,?)";
     connection.query(query, [prd.prd_name, prd.prd_price, prd.prd_qty], (err, results) => {
@@ -15,7 +15,7 @@ router.post('/create', (req, res, next) => {
     });
 });
 
-router.get('/read', (req, res, next) => {
+router.get('/read', (req, res) => {
     query = "SELECT * FROM product";
     connection.query(query, (err, results) => {
         if (!err) {
@@ -26,7 +26,7 @@ router.get('/read', (req, res, next) => {
     });
 });
 
-router.get('/read/:id', (req, res, next) => {
+router.get('/read/:id', (req, res) => {
     const id = req.params.id;
     query = "SELECT * FROM product WHERE prd_id = ?";
     connection.query(query, [id], (err, results) => {
@@ -41,7 +41,7 @@ router.get('/read/:id', (req, res, next) => {
     });
 });
 
-router.put('/update/:id', (req, res, next) => {
+router.put('/update/:id', (req, res) => {
     const id = req.params.id;
     let prd = req.body;
     query = "UPDATE product SET prd_name = ?, prd_price = ?, prd_qty = ? WHERE prd_id = ?";
@@ -57,7 +57,7 @@ router.put('/update/:id', (req, res, next) => {
     });
 });
 
-router.delete('/delete/:id', (req, res, next) => {
+router.delete('/delete/:id', (req, res) => {
     const id = req.params.id;
     query = "DELETE FROM product WHERE prd_id = ?";
     connection.query(query, [id], (err, results) => {

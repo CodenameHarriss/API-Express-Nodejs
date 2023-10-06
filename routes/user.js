@@ -3,7 +3,7 @@ const connection = require('../connection');
 const router = express.Router();
 
 
-router.post('/create', (req, res, next) => {
+router.post('/create', (req, res) => {
     let user = req.body;
     query = "INSERT INTO users (fullname,phone,address,email,password) VALUES (?,?,?,?,?)";
     connection.query(query, [user.fullname, user.phone, user.address, user.email, user.password], (err, results) => {
@@ -15,7 +15,7 @@ router.post('/create', (req, res, next) => {
     });
 });
 
-router.get('/read', (req, res, next) => {
+router.get('/read', (req, res) => {
     query = "SELECT * FROM users";
     connection.query(query, (err, results) => {
         if (!err) {
@@ -26,7 +26,7 @@ router.get('/read', (req, res, next) => {
     });
 });
 
-router.get('/read/:id', (req, res, next) => {
+router.get('/read/:id', (req, res) => {
     const id = req.params.id;
     query = "SELECT * FROM users WHERE id = ?";
     connection.query(query, [id], (err, results) => {
@@ -41,7 +41,7 @@ router.get('/read/:id', (req, res, next) => {
     });
 });
 
-router.put('/update/:id', (req, res, next) => {
+router.put('/update/:id', (req, res) => {
     const id = req.params.id;
     let user = req.body;
     query = "UPDATE users SET fullname = ?, phone = ?, address = ?, email = ?, password = ? WHERE id = ?";
@@ -57,7 +57,7 @@ router.put('/update/:id', (req, res, next) => {
     });
 });
 
-router.delete('/delete/:id', (req, res, next) => {
+router.delete('/delete/:id', (req, res) => {
     const id = req.params.id;
     query = "DELETE FROM users WHERE id = ?";
     connection.query(query, [id], (err, results) => {
